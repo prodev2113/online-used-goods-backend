@@ -1,0 +1,120 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    }, // defines the environments where your code will run.
+    "extends": [ // resues common rules and configurations from plugins:
+        "eslint:recommended", // - eslint:recommended: Standard ESLint rules.
+        "next/core-web-vitals", // - next/core-web-vitals: Ensures Next.js best practices.
+        "plugin:react/recommended", // - plugin:react/recommended: React-specific linting rules.
+        "plugin:react-hooks/recommended", // - plugin:react-hooks/recommended: Enforces best practices with React hooks.
+        "plugin:@typescript-eslint/recommended", //   - plugin:@typescript-eslint/recommended: TypeScript-specific rules.
+        "plugin:jsx-a11y/recommended", // - plugin:jsx-a11y/recommended: Accessibility checks for JSX.
+        "plugin:prettier/recommended" // - plugin:prettier/recommended: Prevents conflicts between Prettier and ESLint.  
+    ],
+    "parser": "@typescript-eslint/parser", // defines the parser to use for parsing the code.
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }, // enables JSX parsing.
+        "ecmaVersion": "latest", // defines the ECMAScript version to use.
+        "sourceType": "module" // allows importing modules from non-ES modules.
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "jsx-a11y",
+        "prettier",
+        "plugin:node/recommended"
+    ], // includes additional linting features.
+    "overrides": [
+        {
+            "files": [
+                "**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx"
+            ],
+            "rules": { // customizes ESLint behavior:
+                "prettier/prettier": "error", // enforces Prettier formatting rules.
+                "react/react-in-jsx-scope": "off", // Not needed with React 17+
+                "react/prop-types": "off", // If using TypeScript
+                "import/imports-first": 0, // disables the rule requiring imports to come before other statements.
+                "import/no-unresolved": 2, // flags unresolved imports.
+                "no-underscore-dangle": 0, // allows the use of dangling underscores in identifiers (e.g., `_privateVar`).
+                "jsx-a11y/aria-props": 2, // ensures that ARIA roles, states, and properties are valid and properly spelled.
+                "jsx-a11y/heading-has-content": 0, // disables the rule requiring headings to have content.
+                "jsx-a11y/label-has-associated-control": [
+                    2,
+                    {
+                        "controlComponents": [
+                            "Input"
+                        ]
+                    }
+                ], // ensures `<label>` elements are correctly associated with form controls.
+                "jsx-a11y/html-has-lang": 0, // disables the rule requiring the `<html>` element to have a `lang` attribute.
+                "jsx-a11y/role-has-required-aria-props": 2, // ensures elements with ARIA roles have the required ARIA properties.
+                "no-confusing-arrow": 0, // disables the rule that flags arrow functions with confusing syntax.
+                "no-console": "off", // warns on the use of `console` statements.
+                "no-nested-ternary": 0, // allows nested ternary operators.
+                "react/jsx-filename-extension": 0, // disables the restriction on JSX files requiring a `.jsx` extension.
+                "react/jsx-uses-vars": 2, // ensures variables used in JSX are considered "used."
+                "no-unused-vars": [
+                    "warn",
+                    {
+                        "vars": "all", // checks all variables.
+                        "args": "after-used", // only flags unused arguments if they come after a used one.
+                        "ignoreRestSiblings": false // ignores unused siblings in destructuring assignments.
+                    }
+                ], // warns about variables that are defined but never used.
+                "semi": [
+                    "error",
+                    "always"
+                ], // enforces the use of semicolons at the end of statements.
+                "quotes": [
+                    "error",
+                    "single",
+                    {
+                        "avoidEscape": true
+                    }
+                ], // promotes consistent use of single quotes, while avoiding unnecessary escaping.
+                "jsx-a11y/anchor-is-valid": [
+                    "warn",
+                    {
+                        "components": [
+                            "Link"
+                        ], // applies the rule to custom components like `Link` (e.g., Next.js's `<Link>`).
+                        "specialLink": [
+                            "hrefLeft",
+                            "hrefRight"
+                        ], // flags invalid or misused `href` values and cases where a `<button>` is more appropriate.
+                        "aspects": [
+                            "invalidHref",
+                            "preferButton"
+                        ] // monitors additional `href` attributes in custom implementations.
+                    }
+                ], // ensures `<a>` elements are used correctly for accessibility.
+                "@typescript-eslint/no-unused-vars": [
+                    "warn",
+                    {
+                        "vars": "all", // checks all variables.
+                        "args": "after-used", // only flags unused arguments if they come after a used one.
+                        "ignoreRestSiblings": true // ignores unused siblings in destructuring assignments.
+                    }
+                ], // similar to the `no-unused-vars` rule but adapted for TypeScript.
+                "@typescript-eslint/explicit-module-boundary-types": "off", // turns off the requirement for explicitly defining return types for functions exported from a module.
+                "react/jsx-uses-react": "off", // turns off the rule that enforces `React` to be imported when using JSX.
+                "react/jsx-key": "error" // enforces the use of the `key` attribute on elements within arrays or iterators.
+            }
+        }
+    ],
+    "settings": { // configures React detection.
+        "react": {
+            "version": "detect" // automatically detects the version of React used in your project.
+        }
+    },
+    "ignorePatterns": [
+        "node_modules/",
+        ".next/",
+        "out/",
+        "public/"
+    ] // excludes files or directories from linting.
+}
